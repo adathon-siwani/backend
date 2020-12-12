@@ -1,0 +1,27 @@
+version: "3"
+services:
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: wichiapp
+      MYSQL_USER: wichiapp
+      MYSQL_PASSWORD: wichiapp
+      MYSQL_ROOT_PASSWORD: wichiapp
+    volumes:
+      - db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
+    ports:
+      - 8081:80
+    environment:
+      PMA_USER: wichiapp
+      PMA_PASSWORD: wichiapp
+      PHP_UPLOAD_MAX_FILESIZE: 100MB
+
+volumes:
+  db:
