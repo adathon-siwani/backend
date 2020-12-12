@@ -8,7 +8,7 @@ public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String nombre;
     private String storeId;
     private String precio;

@@ -1,31 +1,31 @@
--- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
---
--- Host: db
--- Generation Time: Dec 12, 2020 at 05:51 PM
--- Server version: 8.0.22
--- PHP Version: 7.4.11
+CREATE TABLE `comunidad` (
+  `id` int NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL
+);
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+INSERT INTO `comunidad`(`id`, `nombre`) VALUES
+(1,'Chorote'),
+(2,'Chulupi'),
+(3,'Kaniyá'),
+(4,'Waswkuitás'),
+(5,'Pó itáj'),
+(6,'Motás'),
+(7,'Lantawós'),
+(8,'Eslenay'),
+(9,'Hokwisnáj'),
+(10,'Inaté'),
+(11,'Nitsáj'),
+(12,'Mawó'),
+(13,'Chisuk'),
+(14,'Wejnayéj'),
+(15,'Wejwós');
 
+ALTER TABLE `comunidad`
+  ADD PRIMARY KEY (`id`);
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `wichiapp`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `producto`
---
+ALTER TABLE `comunidad`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 CREATE TABLE `producto` (
   `id` int NOT NULL,
@@ -34,11 +34,7 @@ CREATE TABLE `producto` (
   `nombre` varchar(255) DEFAULT NULL,
   `precio` varchar(255) DEFAULT NULL,
   `store_id` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `producto`
---
+);
 
 INSERT INTO `producto` (`id`, `descripcion`, `imagen`, `nombre`, `precio`, `store_id`) VALUES
 (1, NULL, '228af0_ab18203b968447f9bfe1e417b5876937~mv2.jpg', 'Muñecas', '1000', '7fd6d511-bc47-8a25-9671-d2bb64059ed1'),
@@ -256,17 +252,7 @@ INSERT INTO `producto` (`id`, `descripcion`, `imagen`, `nombre`, `precio`, `stor
 (213, NULL, 'd0c909_d6d0490fdcb74bf89dd40fb11fbd8be6~mv2_d_6000_4000_s_4_2.jpg', 'camino ladrillo', '2300', '7db05ef5-6d74-b96a-5d11-cc1213b4e9df'),
 (214, NULL, 'd0c909_b8ff6d43f8a94ab9b8f94d63cc824900~mv2_d_5879_3561_s_4_2.jpg', 'camino natural', '2300', '5706d936-1a73-6ff7-151b-a8d79e92c580');
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `producto`
---
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`);
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
