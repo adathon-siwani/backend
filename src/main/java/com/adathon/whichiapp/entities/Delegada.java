@@ -10,6 +10,13 @@ public class Delegada {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nombre;
+    private Integer telefono;
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Comunidad comunidad;
+
+
+
 
     public Integer getId() {
         return id;
@@ -25,5 +32,21 @@ public class Delegada {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Integer getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(Integer telefono) {
+        this.telefono = telefono;
+    }
+
+    public Comunidad getComunidad() {
+        return comunidad;
+    }
+
+    public void setComunidad(Comunidad comunidad) {
+        this.comunidad = comunidad;
     }
 }
