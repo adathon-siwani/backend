@@ -345,9 +345,8 @@ CREATE TABLE `comunidad_produccion_actual` (
 );
 
 INSERT INTO `comunidad_produccion_actual` (`comunidad_id`, `produccion_actual_id`) VALUES
-(1, 15),
-(1, 20),
-(1, 35);
+(1,5),
+(1,136);
 
 ALTER TABLE `comunidad_produccion_actual`
   ADD PRIMARY KEY (`comunidad_id`,`produccion_actual_id`);
