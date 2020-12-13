@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MessagingService {
@@ -52,12 +53,18 @@ public class MessagingService {
         Delegada delegada = comunidad.getDelegada();
         String number = delegada.getTelefono();
 
-        // For this MVP we'll use the sandbox number
-        number = "+542213049275";
+        String formattedMessage = "Hola, podrían comenzar a producir:\n\n" +
+                String.join(" - ", productos.stream().map(Producto::getNombre).collect(Collectors.toList()));
+
+        if (!message.isEmpty()) {
+            formattedMessage += "\n" + message;
+        }
 
         try {
+            // For this MVP we'll use the sandbox number
+            // number should be used instead
             sendMessage("+13073232604", "+542213049275", message);
-            sendMediaMessage("whatsapp:+14155238886", "whatsapp:+5492213049275", message, productos);
+            sendMediaMessage("whatsapp:+14155238886", "whatsapp:+5492213049275", formattedMessage, productos);
             return true;
         } catch (Exception e) {
             return false;
