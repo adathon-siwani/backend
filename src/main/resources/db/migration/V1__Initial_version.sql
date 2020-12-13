@@ -4,16 +4,20 @@ CREATE TABLE `delegada` (
   `telefono` varchar(255) DEFAULT NULL
 );
 
-
 INSERT INTO `delegada` (`id`, `nombre`, `telefono`) VALUES
-(1, 'Delegada 1', '1234');
+(1, 'Citlalli', '1234'),
+(2, 'Ariché', '1234'),
+(3, 'Eluney', '1234'),
+(4, 'Sami', '1234'),
+(5, 'Yatzil', '1234'),
+(6, 'Anahí', '1234'),
+(7, 'Malén', '1234'),
+(8, 'Suyay', '1234'),
+(9, 'Itati', '1234'),
+(10, 'Xotchil', '1234');
 
 ALTER TABLE `delegada`
   ADD PRIMARY KEY (`id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 CREATE TABLE `comunidad` (
   `id` int NOT NULL,
@@ -23,20 +27,20 @@ CREATE TABLE `comunidad` (
 
 INSERT INTO `comunidad`(`id`, `nombre`, `delegada_id`) VALUES
 (1,'Chorote', 1),
-(2,'Chulupi', 1),
-(3,'Kaniyá', 1),
-(4,'Waswkuitás', 1),
-(5,'Pó itáj', 1),
-(6,'Motás', 1),
-(7,'Lantawós', 1),
-(8,'Eslenay', 1),
-(9,'Hokwisnáj', 1),
-(10,'Inaté', 1),
-(11,'Nitsáj', 1),
-(12,'Mawó', 1),
-(13,'Chisuk', 1),
-(14,'Wejnayéj', 1),
-(15,'Wejwós', 1);
+(2,'Chulupi', 2),
+(3,'Kaniyá', 3),
+(4,'Waswkuitás', 4),
+(5,'Pó itáj', 5),
+(6,'Motás', 6),
+(7,'Lantawós', 7),
+(8,'Eslenay', 8),
+(9,'Hokwisnáj', 9),
+(10,'Inaté', 10),
+(11,'Nitsáj', 2),
+(12,'Mawó', 3),
+(13,'Chisuk', 4),
+(14,'Wejnayéj', 5),
+(15,'Wejwós', 6);
 
 ALTER TABLE `comunidad`
   ADD PRIMARY KEY (`id`);
