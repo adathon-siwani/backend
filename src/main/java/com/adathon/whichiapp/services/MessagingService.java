@@ -54,7 +54,7 @@ public class MessagingService {
         String number = delegada.getTelefono();
 
         String formattedMessage = "Hola, podrían comenzar a producir:\n\n" +
-                String.join(" - ", productos.stream().map(Producto::getNombre).collect(Collectors.toList()));
+                String.join("", productos.stream().map(producto -> " - " + producto.getNombre() + "\n").collect(Collectors.toList()));
 
         if (!message.isEmpty()) {
             formattedMessage += "\n" + message;
@@ -63,7 +63,7 @@ public class MessagingService {
         try {
             // For this MVP we'll use the sandbox number
             // number should be used instead
-            sendMessage("+13073232604", "+542213049275", message);
+            sendMessage("+13073232604", "+542213049275", formattedMessage);
             sendMediaMessage("whatsapp:+14155238886", "whatsapp:+5492213049275", formattedMessage, productos);
             return true;
         } catch (Exception e) {
