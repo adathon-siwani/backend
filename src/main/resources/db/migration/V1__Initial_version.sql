@@ -14,7 +14,12 @@ INSERT INTO `delegada` (`id`, `nombre`, `telefono`) VALUES
 (7, 'Malén', '1234'),
 (8, 'Suyay', '1234'),
 (9, 'Itati', '1234'),
-(10, 'Xotchil', '1234');
+(10, 'Waita', '1234'),
+(11, 'Kuka', '1234'),
+(12, 'Amaya', '1234'),
+(13, 'Jaylli', '1234'),
+(14, 'Sagta', '1234'),
+(15, 'Wara', '1234');
 
 ALTER TABLE `delegada`
   ADD PRIMARY KEY (`id`);
@@ -36,11 +41,11 @@ INSERT INTO `comunidad`(`id`, `nombre`, `delegada_id`) VALUES
 (8,'Eslenay', 8),
 (9,'Hokwisnáj', 9),
 (10,'Inaté', 10),
-(11,'Nitsáj', 2),
-(12,'Mawó', 3),
-(13,'Chisuk', 4),
-(14,'Wejnayéj', 5),
-(15,'Wejwós', 6);
+(11,'Nitsáj', 11),
+(12,'Mawó', 12),
+(13,'Chisuk', 13),
+(14,'Wejnayéj', 14),
+(15,'Wejwós', 15);
 
 ALTER TABLE `comunidad`
   ADD PRIMARY KEY (`id`);
