@@ -270,3 +270,29 @@ INSERT INTO `producto` (`id`, `descripcion`, `imagen`, `nombre`, `precio`, `stor
 ALTER TABLE `producto`
   ADD PRIMARY KEY (`id`);
 COMMIT;
+
+CREATE TABLE `comunidad_produccion` (
+  `comunidad_id` int NOT NULL,
+  `produccion_id` bigint NOT NULL
+);
+
+INSERT INTO `comunidad_produccion` (`comunidad_id`, `produccion_id`) VALUES
+(1, 15),
+(1, 20),
+(1, 35);
+
+ALTER TABLE `comunidad_produccion`
+  ADD PRIMARY KEY (`comunidad_id`,`produccion_id`);
+
+CREATE TABLE `comunidad_produccion_actual` (
+  `comunidad_id` int NOT NULL,
+  `produccion_actual_id` bigint NOT NULL
+);
+
+INSERT INTO `comunidad_produccion_actual` (`comunidad_id`, `produccion_actual_id`) VALUES
+(1, 15),
+(1, 20),
+(1, 35);
+
+ALTER TABLE `comunidad_produccion_actual`
+  ADD PRIMARY KEY (`comunidad_id`,`produccion_actual_id`);
