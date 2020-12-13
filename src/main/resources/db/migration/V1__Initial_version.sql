@@ -1,31 +1,45 @@
-CREATE TABLE `comunidad` (
+CREATE TABLE `delegada` (
   `id` int NOT NULL,
-  `nombre` varchar(255) DEFAULT NULL
+  `nombre` varchar(255) DEFAULT NULL,
+  `telefono` varchar(255) DEFAULT NULL
 );
 
-INSERT INTO `comunidad`(`id`, `nombre`) VALUES
-(1,'Chorote'),
-(2,'Chulupi'),
-(3,'Kaniyá'),
-(4,'Waswkuitás'),
-(5,'Pó itáj'),
-(6,'Motás'),
-(7,'Lantawós'),
-(8,'Eslenay'),
-(9,'Hokwisnáj'),
-(10,'Inaté'),
-(11,'Nitsáj'),
-(12,'Mawó'),
-(13,'Chisuk'),
-(14,'Wejnayéj'),
-(15,'Wejwós');
+
+INSERT INTO `delegada` (`id`, `nombre`, `telefono`) VALUES
+(1, 'Delegada 1', '1234');
+
+ALTER TABLE `delegada`
+  ADD PRIMARY KEY (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `comunidad` (
+  `id` int NOT NULL,
+  `nombre` varchar(255) DEFAULT NULL,
+  `delegada_id` int DEFAULT NULL
+);
+
+INSERT INTO `comunidad`(`id`, `nombre`, `delegada_id`) VALUES
+(1,'Chorote', 1),
+(2,'Chulupi', 1),
+(3,'Kaniyá', 1),
+(4,'Waswkuitás', 1),
+(5,'Pó itáj', 1),
+(6,'Motás', 1),
+(7,'Lantawós', 1),
+(8,'Eslenay', 1),
+(9,'Hokwisnáj', 1),
+(10,'Inaté', 1),
+(11,'Nitsáj', 1),
+(12,'Mawó', 1),
+(13,'Chisuk', 1),
+(14,'Wejnayéj', 1),
+(15,'Wejwós', 1);
 
 ALTER TABLE `comunidad`
   ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `comunidad`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
-COMMIT;
 
 CREATE TABLE `producto` (
   `id` int NOT NULL,

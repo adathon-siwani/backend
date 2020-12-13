@@ -1,11 +1,18 @@
 package com.adathon.whichiapp.services;
 
+import com.adathon.whichiapp.entities.Comunidad;
+import com.adathon.whichiapp.entities.Delegada;
+import com.adathon.whichiapp.entities.Producto;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MessagingService {
@@ -17,11 +24,43 @@ public class MessagingService {
         Twilio.init(twilioAccountSid, twilioAuthToken);
     }
 
-    public String sendMessage(String from, String to, String body) {
+    private void sendMessage(String from, String to, String body) {
         Message message = Message.creator(new PhoneNumber(to),
                 new PhoneNumber(from),
                 body).create();
 
-        return message.getSid();
+        message.getSid();
+    }
+
+    private void sendMediaMessage(String from, String to, String body, List<Producto> products) {
+        List<URI> images = new ArrayList<>();
+
+        products.forEach(producto -> images.add(
+                URI.create("https://raw.githubusercontent.com/adathon-siwani/siwani-products/master/imgs_sm/" + producto.getImagen()
+                )));
+
+        Message message = Message.creator(new PhoneNumber(to),
+                new PhoneNumber(from),
+                body)
+                .setMediaUrl(images)
+                .create();
+
+        message.getSid();
+    }
+
+    public boolean sendComunidadUpdate(Comunidad comunidad, String message, List<Producto> productos) {
+        Delegada delegada = comunidad.getDelegada();
+        String number = delegada.getTelefono();
+
+        // For this MVP we'll use the sandbox number
+        number = "+542213049275";
+
+        try {
+            sendMessage("+13073232604", "+542213049275", message);
+            sendMediaMessage("whatsapp:+14155238886", "whatsapp:+5492213049275", message, productos);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

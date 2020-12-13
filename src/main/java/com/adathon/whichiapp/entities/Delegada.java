@@ -1,5 +1,7 @@
 package com.adathon.whichiapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,21 +10,22 @@ public class Delegada {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     private String nombre;
-    private Integer telefono;
+    private String telefono;
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "id", referencedColumnName = "id")
     private Comunidad comunidad;
 
 
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -34,11 +37,11 @@ public class Delegada {
         this.nombre = nombre;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 

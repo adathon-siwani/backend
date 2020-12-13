@@ -1,16 +1,18 @@
 package com.adathon.whichiapp.controller;
 
-import java.util.List;
-
 import com.adathon.whichiapp.entities.Comunidad;
+import com.adathon.whichiapp.entities.Delegada;
+import com.adathon.whichiapp.entities.Producto;
+import com.adathon.whichiapp.models.ActualizarComunidadRequest;
+import com.adathon.whichiapp.models.EnviarMensajeRequest;
 import com.adathon.whichiapp.services.ComunidadService;
-
+import com.adathon.whichiapp.services.DelegadasService;
 import com.adathon.whichiapp.services.MessagingService;
+import com.adathon.whichiapp.services.ProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 public class MainController {
@@ -19,26 +21,53 @@ public class MainController {
     private ComunidadService comunidadService;
 
     @Autowired
+    private ProductosService productoService;
+
+    @Autowired
+    private DelegadasService delegadasService;
+
+    @Autowired
     private MessagingService messagingService;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return name;
+    @GetMapping("/productos")
+    public List<Producto> listarProductos() {
+        return productoService.listar();
     }
 
-    @GetMapping("/sms")
-    public String sms() {
-        return messagingService.sendMessage("+13073232604", "+542213049275", "Hola sms");
-    }
-
-    @GetMapping("/whatsapp")
-    public String whatsapp() {
-        return messagingService.sendMessage("whatsapp:+14155238886", "whatsapp:+5492213049275", "Hola whatsapp");
+    @GetMapping("/producto/{id}")
+    public Producto getProducto(@PathVariable Long id) {
+        return productoService.getProducto(id);
     }
 
     @GetMapping("/comunidades")
     public List<Comunidad> listarComunidades() {
-        return comunidadService.listarComunidades();
+        return comunidadService.listar();
+    }
+
+    @GetMapping("/comunidad/{id}")
+    public Comunidad getComunidad(@PathVariable Long id) {
+        return comunidadService.getComunidad(id);
+    }
+
+    @GetMapping("/delegadas")
+    public List<Delegada> listarDelegadas() {
+        return delegadasService.listar();
+    }
+
+    @GetMapping("/delegada/{id}")
+    public Delegada getDelegada(@PathVariable Long id) {
+        return delegadasService.getDelegada(id);
+    }
+
+    @PostMapping("/comunidad/{id}/produccion")
+    public Comunidad actualizarComunidad(@PathVariable Long id, @RequestBody ActualizarComunidadRequest data) {
+        return comunidadService.actualizarComunidad(id, data.productos, data.aclaracion, data.enviarMensaje);
+    }
+
+    @PostMapping("/comunidad/{id}/enviar-mensaje")
+    public boolean messageComunidad(@PathVariable Long id, @RequestBody EnviarMensajeRequest data) {
+        Comunidad comunidad = comunidadService.getComunidad(id);
+        return messagingService.sendComunidadUpdate(comunidad, data.mensaje, List.of());
     }
 
 }
